@@ -1,23 +1,34 @@
 import { siteContent } from "./lib/content";
-import HomeClient from "./components/HomeClient";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AnnouncementBar from "./components/AnnouncementBar";
+import Hero from "./components/Hero";
+import Services from "./components/Services";
+import WhyChooseUs from "./components/WhyChooseUs";
+import Process from "./components/Process";
+import Portfolio from "./components/Portfolio";
+import Testimonials from "./components/Testimonials";
+import Technologies from "./components/Technologies";
+import Contact from "./components/Contact";
 
 export async function generateMetadata() {
   const { home } = siteContent;
   return {
-    title: home.title,
-    description: home.description,
-    keywords: home.keywords,
+    title: "Nextora Digital - Modern Digital Solutions",
+    description:
+      "Transform your brand with Nextora Digital's expert web design, development, and digital solutions. Get 50% off now!",
+    keywords:
+      "web design, web development, UI/UX, ecommerce, digital solutions, Nextora Digital, tech agency, modern websites",
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: "https://yourdomain.com",
-      title: home.title,
-      description: home.description,
+      url: "https://www.nextoradigital.com",
+      title: "Nextora Digital - Modern Digital Solutions",
+      description:
+        "Transform your brand with Nextora Digital's expert web design, development, and digital solutions.",
       images: [
         {
-          url: home.ogImage,
+          url: home.ogImage || "https://www.nextoradigital.com/og-image.jpg",
           width: 1200,
           height: 630,
           alt: "Nextora Digital - Future-Ready Digital Solutions",
@@ -26,12 +37,13 @@ export async function generateMetadata() {
     },
     twitter: {
       card: "summary_large_image",
-      title: home.title,
-      description: home.description,
-      images: home.ogImage,
+      title: "Nextora Digital - Modern Digital Solutions",
+      description:
+        "Transform your brand with Nextora Digital's expert web design, development, and digital solutions.",
+      images: home.ogImage || "https://www.nextoradigital.com/og-image.jpg",
     },
     robots: "index, follow",
-    alternates: { canonical: "https://yourdomain.com" },
+    alternates: { canonical: "https://www.nextoradigital.com" },
   };
 }
 
@@ -41,7 +53,17 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <HomeClient content={siteContent.home} />
+      <main className="min-h-screen bg-gradient-to-b from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-primary)] text-[var(--text-primary)]">
+        <AnnouncementBar />
+        <Hero content={siteContent.home} />
+        <Services />
+        <WhyChooseUs />
+        <Process />
+        <Portfolio />
+        <Testimonials />
+        <Technologies />
+        <Contact />
+      </main>
       <Footer />
     </>
   );

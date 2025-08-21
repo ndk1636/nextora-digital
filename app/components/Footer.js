@@ -1,76 +1,92 @@
 "use client";
 
 import React from "react";
-import { Mail, Phone, Linkedin, Briefcase } from "lucide-react";
+import { motion } from "framer-motion";
+import { Facebook, Linkedin, Instagram, Dribbble } from "lucide-react";
 import Link from "next/link";
-import { siteContent } from "../lib/content";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 export default function Footer() {
-  const socialIcons = {
-    Linkedin: <Linkedin className="h-5 w-5 text-teal-400" aria-hidden="true" />,
-    Briefcase: <Briefcase className="h-5 w-5 text-teal-400" aria-hidden="true" />,
-  };
-
   return (
-    <footer className="bg-slate-900 border-t border-teal-600/20 py-12" role="contentinfo">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 text-sm text-slate-400">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl bg-teal-400/20 ring-1 ring-teal-400/40 grid place-items-center">
-              <svg className="h-5 w-5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2v20" />
-              </svg>
+    <footer className="bg-[var(--bg-secondary)] border-t border-[var(--border)] py-12">
+      <div className="container mx-auto max-w-6xl px-4">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-4 gap-8"
+        >
+          <motion.div variants={fadeUp}>
+            <h3 className="text-xl font-bold text-[var(--accent-primary)]">Nextora Digital</h3>
+            <p className="text-[var(--text-secondary)] mt-4">
+              Your trusted partner for digital excellence. From design to
+              development, we make your brand shine.
+            </p>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h4 className="font-medium">Useful Links</h4>
+            <ul className="mt-4 space-y-2 text-[var(--text-secondary)]">
+              {["Blog", "Privacy Policy", "Terms of Service"].map((link) => (
+                <li key={link}>
+                  <Link
+                    href={`/${link.toLowerCase().replace(" ", "-")}`}
+                    className="hover:text-[var(--highlight)] transition"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h4 className="font-medium">Overview</h4>
+            <ul className="mt-4 space-y-2 text-[var(--text-secondary)]">
+              {["About Us", "Services", "Portfolio", "Contact"].map((link) => (
+                <li key={link}>
+                  <Link
+                    href={`/${link.toLowerCase().replace(" ", "-")}`}
+                    className="hover:text-[var(--highlight)] transition"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h4 className="font-medium">Follow Us</h4>
+            <div className="flex gap-4 mt-4">
+              {[
+                { name: "Facebook", icon: Facebook, url: "https://facebook.com" },
+                { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com" },
+                { name: "Instagram", icon: Instagram, url: "https://instagram.com" },
+                { name: "Dribbble", icon: Dribbble, url: "https://dribbble.com" },
+              ].map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <social.icon className="h-6 w-6 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition" />
+                </a>
+              ))}
             </div>
-            <span className="text-lg font-semibold text-slate-200">{siteContent.footer.company}</span>
-          </div>
-          <p className="text-slate-300">
-            Building future-ready digital solutions for global brands.
-          </p>
-          <p>© {siteContent.footer.year} {siteContent.footer.company}. All rights reserved.</p>
-        </div>
-        <div className="space-y-4">
-          <h3 className="text-base font-semibold text-slate-200">Quick Links</h3>
-          <ul className="space-y-2">
-            {siteContent.footer.links.map((link, i) => (
-              <li key={i}>
-                <Link href={link.href} className="hover:text-teal-400 transition" rel="nofollow">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="space-y-4">
-          <h3 className="text-base font-semibold text-slate-200">Contact Us</h3>
-          <div className="flex items-center gap-2">
-            <Mail className="h-5 w-5 text-teal-400" aria-hidden="true" />
-            <a href={`mailto:${siteContent.footer.contact.email}`} className="hover:text-teal-400 transition">
-              {siteContent.footer.contact.email}
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone className="h-5 w-5 text-teal-400" aria-hidden="true" />
-            <a href={`tel:${siteContent.footer.contact.phone}`} className="hover:text-teal-400 transition">
-              {siteContent.footer.contact.phone}
-            </a>
-          </div>
-          <div className="flex items-center gap-4 pt-2">
-            {siteContent.footer.socials.map((social, i) => (
-              <a
-                key={i}
-                href={social.href}
-                className="hover:text-teal-400 transition"
-                aria-label={social.label}
-                rel="nofollow"
-                target="_blank"
-              >
-                {socialIcons[social.icon]}
-              </a>
-            ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+        <motion.p
+          variants={fadeUp}
+          className="text-center text-[var(--text-secondary)] mt-12"
+        >
+          © 2025 – Nextora Digital. All rights reserved.
+        </motion.p>
       </div>
     </footer>
   );
