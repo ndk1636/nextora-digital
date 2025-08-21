@@ -4,6 +4,7 @@ import Script from "next/script";
 export const metadata = {
   title: "Nextora Digital",
   description: "Future-Ready Digital Solutions",
+  robots: "noindex, nofollow",
 };
 
 export default function RootLayout({ children }) {
@@ -11,14 +12,14 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Nextora Digital",
-    url: "https://www.nextoradigital.com",
-    logo: "https://www.nextoradigital.com/logo.png",
+    url: "https://yourdomain.com",
   };
 
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://www.nextoradigital.com" />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://yourdomain.com" />
       </head>
       <body>
         {children}
