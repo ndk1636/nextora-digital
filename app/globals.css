@@ -5,6 +5,8 @@
   --color-brand: #2563eb;
   --color-brand-dark: #1d4ed8;
   --color-accent: #06b6d4;
+  /* Supporting tone — used sparingly for extra depth, never as a primary color */
+  --color-indigo: #4f46e5;
 
   /* Status */
   --color-success: #10b981;
@@ -17,16 +19,20 @@
   --radius-panel: 32px;
   --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
-  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.06), 0 16px 40px rgba(15, 23, 42, 0.08);
-  --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.08), 0 12px 32px rgba(37, 99, 235, 0.16);
+  /* Shadows — layered for a handcrafted, non-flat depth system */
+  --shadow-soft: 0 1px 1px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 24px -8px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 2px 4px rgba(15, 23, 42, 0.04), 0 14px 28px -8px rgba(15, 23, 42, 0.1),
+    0 28px 56px -16px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 1px 1px rgba(37, 99, 235, 0.08), 0 8px 16px -6px rgba(37, 99, 235, 0.28),
+    0 24px 48px -12px rgba(37, 99, 235, 0.22);
 }
 
 @theme inline {
   --color-brand: var(--color-brand);
   --color-brand-dark: var(--color-brand-dark);
   --color-accent: var(--color-accent);
+  --color-indigo: var(--color-indigo);
 
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
@@ -85,6 +91,26 @@ body {
   background: #ffffff;
   color: #0f172a;
   font-family: var(--font-sans);
+}
+
+/* Signature brand motifs */
+.text-gradient-brand {
+  background: linear-gradient(100deg, var(--color-brand) 10%, var(--color-accent) 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-hairline-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 @media (prefers-reduced-motion: reduce) {

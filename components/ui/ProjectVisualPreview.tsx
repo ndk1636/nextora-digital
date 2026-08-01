@@ -1,20 +1,8 @@
 import { cn } from "@/lib/cn";
+import { projectAccentMap } from "@/lib/projectAccent";
 import { CheckCircleIcon } from "@/components/icons";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import type { ProjectItem } from "@/types";
-
-const accentMap: Record<
-  ProjectItem["accent"],
-  { text: string; solid: string; grad: string }
-> = {
-  brand: { text: "text-brand", solid: "bg-brand", grad: "from-brand to-accent" },
-  accent: { text: "text-accent", solid: "bg-accent", grad: "from-accent to-brand" },
-  success: {
-    text: "text-emerald-600",
-    solid: "bg-emerald-500",
-    grad: "from-emerald-500 to-accent",
-  },
-};
 
 type ProjectVisualPreviewProps = Pick<ProjectItem, "name" | "visual" | "accent">;
 
@@ -23,7 +11,7 @@ export function ProjectVisualPreview({
   visual,
   accent,
 }: ProjectVisualPreviewProps) {
-  const theme = accentMap[accent];
+  const theme = projectAccentMap[accent];
 
   return (
     <BrowserFrame>

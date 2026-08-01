@@ -46,11 +46,11 @@ export function FloatingStatCard({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="flex items-center gap-3 rounded-card border border-slate-200 bg-white/90 px-4 py-3 shadow-elevated backdrop-blur-sm"
+        className="flex items-center gap-3 rounded-card border border-slate-200/80 bg-white/95 px-4 py-3 shadow-elevated ring-1 ring-white/40 backdrop-blur-md"
       >
         <span
           className={cn(
-            "flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px]",
+            "flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] ring-1 ring-inset ring-black/[0.03]",
             iconStyles[icon]
           )}
         >

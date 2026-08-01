@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
 type ButtonSize = "md" | "lg";
 
 type CommonProps = {
@@ -29,10 +29,13 @@ type ButtonProps =
     });
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "bg-brand text-white shadow-glow hover:bg-brand-dark",
+  primary:
+    "bg-brand text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_1px_1px_rgba(37,99,235,0.15),0_10px_20px_-6px_rgba(37,99,235,0.45)] hover:bg-brand-dark",
   secondary:
-    "bg-white text-slate-900 border border-slate-200 hover:border-brand/40 hover:text-brand",
+    "bg-white text-slate-900 border border-slate-200 shadow-soft hover:border-brand/40 hover:text-brand",
   ghost: "bg-transparent text-slate-900 hover:text-brand",
+  outline:
+    "bg-transparent text-white border border-white/40 hover:bg-white/10 hover:border-white/70",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

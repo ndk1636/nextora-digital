@@ -19,21 +19,36 @@ export type ServiceIconKey =
   | "frontend";
 
 export type ServiceItem = {
+  slug: string;
   icon: ServiceIconKey;
   title: string;
   description: string;
   outcome: string;
   featured?: boolean;
+  overview: string;
+  problems: string[];
+  features: string[];
+  benefits: string[];
+  techStack: string[];
+  faqs: FaqItem[];
 };
 
 export type TechCategory = {
   category: string;
+  description: string;
   items: string[];
+};
+
+export type TrustIndicator = {
+  value: string;
+  label: string;
+  description: string;
 };
 
 export type ProjectVisual = "line" | "bar" | "list";
 
 export type ProjectItem = {
+  slug: string;
   name: string;
   category: string;
   description: string;
@@ -42,6 +57,10 @@ export type ProjectItem = {
   impact: string;
   visual: ProjectVisual;
   accent: "brand" | "accent" | "success";
+  overview: string;
+  goals: string[];
+  features: string[];
+  designHighlights: string[];
 };
 
 export type ProcessIconKey =
@@ -58,6 +77,7 @@ export type ProcessStep = {
   icon: ProcessIconKey;
   title: string;
   description: string;
+  output: string;
 };
 
 export type WhyChooseUsIconKey =
@@ -65,7 +85,8 @@ export type WhyChooseUsIconKey =
   | "scalability"
   | "reliability"
   | "impact"
-  | "partnership";
+  | "partnership"
+  | "transparency";
 
 export type WhyChooseUsItem = {
   icon: WhyChooseUsIconKey;
@@ -83,6 +104,7 @@ export type ContactTrustNoteIconKey = "bolt" | "shield" | "badge" | "chat";
 export type ContactTrustNote = {
   icon: ContactTrustNoteIconKey;
   label: string;
+  description: string;
 };
 
 export type ContactFormValues = {
@@ -92,4 +114,31 @@ export type ContactFormValues = {
   projectType: string;
   budget: string;
   message: string;
+};
+
+export type AudienceIconKey = "startup" | "enterprise" | "healthcare" | "business";
+
+export type AudienceItem = {
+  icon: AudienceIconKey;
+  title: string;
+  description: string;
+};
+
+export type PrincipleIconKey = "scope" | "ownership" | "communication" | "support";
+
+export type PrincipleItem = {
+  icon: PrincipleIconKey;
+  title: string;
+  description: string;
+};
+
+export type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+export type LegalSection = {
+  heading: string;
+  paragraphs: string[];
+  list?: string[];
 };

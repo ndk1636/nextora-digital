@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechBadge } from "@/components/ui/TechBadge";
-import { trustIndicators, trustedByStack } from "@/constants/technologies";
+import { trustIndicators, trustedByStack } from "@/data/technologies";
 
 export function TrustedBy() {
   const marqueeItems = [...trustedByStack, ...trustedByStack];
@@ -29,13 +29,18 @@ export function TrustedBy() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-slate-200 pt-12 sm:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-8 border-t border-slate-200 pt-12 sm:grid-cols-2 lg:grid-cols-4">
           {trustIndicators.map((stat) => (
-            <div key={stat.label} className="text-center">
+            <div key={stat.label} className="text-center sm:text-left">
               <p className="font-display text-3xl font-bold text-slate-900">
                 {stat.value}
               </p>
-              <p className="mt-1 text-sm text-slate-500">{stat.label}</p>
+              <p className="mt-1.5 text-sm font-semibold text-slate-700">
+                {stat.label}
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                {stat.description}
+              </p>
             </div>
           ))}
         </div>

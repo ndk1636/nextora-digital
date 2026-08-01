@@ -8,17 +8,11 @@ import { Technologies } from "@/components/sections/Technologies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
-import { getFaqSchema, getOrganizationSchema } from "@/lib/schema";
+import { getFaqSchema } from "@/lib/schema";
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getOrganizationSchema()),
-        }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema()) }}

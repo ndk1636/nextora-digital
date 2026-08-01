@@ -25,15 +25,6 @@ export const siteConfig = {
   ],
 } as const;
 
-export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#projects" },
-  { label: "Process", href: "#process" },
-  { label: "Technologies", href: "#technologies" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
-] as const;
-
 export const heroStats = [
   {
     label: "Growth-Ready Architecture",

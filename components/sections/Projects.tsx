@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechBadge } from "@/components/ui/TechBadge";
+import { ProjectVisualPreview } from "@/components/ui/ProjectVisualPreview";
 import { ArrowUpRightIcon, CheckCircleIcon } from "@/components/icons";
-import { projects } from "@/constants/projects";
+import { projects } from "@/data/projects";
 import { cn } from "@/lib/cn";
-import { ProjectVisualPreview } from "./ProjectVisualPreview";
 
 export function Projects() {
   return (
@@ -19,7 +19,7 @@ export function Projects() {
           description="A look at the type of systems we design and ship — from workforce platforms to full SaaS products."
         />
 
-        <div className="mt-16 flex flex-col gap-20 sm:gap-28">
+        <div className="mt-20 flex flex-col gap-24 sm:gap-32">
           {projects.map((project, index) => (
             <motion.div
               key={project.name}
@@ -38,13 +38,19 @@ export function Projects() {
               </div>
 
               <div className={cn(index % 2 === 1 && "lg:order-1")}>
-                <span className="text-xs font-semibold uppercase tracking-wide text-brand">
-                  {project.category}
-                </span>
-                <h3 className="mt-3 font-display text-2xl font-bold text-slate-900 sm:text-3xl">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-sm font-semibold text-slate-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="h-px w-5 bg-slate-300" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">
+                    {project.category}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-balance font-display text-2xl font-bold tracking-[-0.02em] text-slate-900 sm:text-3xl">
                   {project.name}
                 </h3>
-                <p className="mt-4 text-base leading-relaxed text-slate-600">
+                <p className="mt-4 max-w-md text-base leading-relaxed text-slate-600">
                   {project.description}
                 </p>
 
@@ -54,19 +60,19 @@ export function Projects() {
                   ))}
                 </div>
 
-                <ul className="mt-8 flex flex-col gap-2.5">
+                <div className="mt-7 flex flex-wrap gap-2.5">
                   {project.highlights.map((highlight) => (
-                    <li
+                    <span
                       key={highlight}
-                      className="flex items-start gap-2.5 text-sm text-slate-700"
+                      className="inline-flex items-center gap-2 rounded-pill border border-slate-200 bg-white px-3.5 py-2 text-xs font-medium text-slate-700 shadow-soft"
                     >
-                      <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                      <CheckCircleIcon className="h-3.5 w-3.5 shrink-0 text-emerald-500" />
                       {highlight}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
 
-                <p className="mt-6 flex items-start gap-2 text-sm text-slate-600">
+                <p className="mt-7 flex items-start gap-3 border-l-2 border-brand/25 pl-4 text-sm leading-relaxed text-slate-600">
                   <ArrowUpRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                   {project.impact}
                 </p>

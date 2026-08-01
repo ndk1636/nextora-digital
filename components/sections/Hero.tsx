@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { FloatingStatCard } from "@/components/ui/FloatingStatCard";
 import { ArrowRightIcon } from "@/components/icons";
 import { fadeInUp, staggerContainer } from "@/components/animations/variants";
-import { heroStats } from "@/constants/site";
+import { heroStats } from "@/data/site";
 import { HeroDashboardPreview } from "./HeroDashboardPreview";
 
 export function Hero() {
@@ -16,9 +16,10 @@ export function Hero() {
       className="relative overflow-hidden bg-white pt-36 pb-24 sm:pt-44 sm:pb-32"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#f8fafc,#ffffff_60%)]" />
-        <div className="animate-gradient absolute -top-40 -left-40 h-[560px] w-[560px] rounded-full bg-gradient-to-br from-brand/25 to-accent/10 blur-3xl" />
-        <div className="animate-gradient absolute top-10 -right-32 h-[480px] w-[480px] rounded-full bg-gradient-to-bl from-accent/20 to-brand/10 blur-3xl [animation-delay:2s]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#f8fafc,#ffffff_55%)]" />
+        <div className="bg-dot-grid absolute inset-x-0 top-0 h-[560px] [mask-image:radial-gradient(ellipse_60%_55%_at_50%_0%,black_35%,transparent_100%)]" />
+        <div className="animate-gradient absolute -top-40 -left-40 h-[560px] w-[560px] rounded-full bg-gradient-to-br from-brand/20 to-accent/8 blur-3xl" />
+        <div className="animate-gradient absolute top-10 -right-32 h-[480px] w-[480px] rounded-full bg-gradient-to-bl from-accent/16 to-brand/8 blur-3xl [animation-delay:2s]" />
       </div>
 
       <Container>
@@ -26,30 +27,29 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-4xl text-center"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 rounded-pill border border-slate-200 bg-white/80 px-4 py-1.5 text-xs font-medium text-slate-600 shadow-soft backdrop-blur-sm"
+            className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand"
           >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            </span>
-            Software Engineering Studio for Ambitious Businesses
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-brand/70" />
+            Software Engineering Studio
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-brand/70" />
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+            className="mt-8 text-balance font-display text-5xl font-bold leading-[1.08] tracking-[-0.025em] text-slate-900 sm:text-6xl lg:text-7xl lg:leading-[1.05]"
           >
-            Enterprise Software,
-            <br className="hidden sm:block" /> Engineered for Scale
+            Enterprise software,
+            <br />
+            <span className="text-gradient-brand">engineered to scale.</span>
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-slate-600"
+            className="mx-auto mt-7 max-w-xl text-balance text-lg leading-relaxed text-slate-600"
           >
             Nextora Digital designs and builds premium SaaS platforms, HRM
             systems, healthcare software, and AI-powered business solutions
@@ -58,19 +58,44 @@ export function Hero() {
 
           <motion.div
             variants={fadeInUp}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <Button href="#contact" size="lg">
               Book a Call
             </Button>
-            <Button href="#projects" variant="secondary" size="lg">
-              View Work
-              <ArrowRightIcon className="h-4 w-4" />
+            <Button href="#projects" variant="ghost" size="lg" className="group">
+              View Our Work
+              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
+          </motion.div>
+
+          <motion.div variants={fadeInUp} className="mt-14">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Built on foundations serious software runs on
+            </p>
+            <div className="mt-4 flex flex-wrap items-center justify-center divide-x divide-slate-200 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              {heroStats.map((stat) => (
+                <span key={stat.label} className="px-5 first:pl-0 last:pr-0">
+                  {stat.value}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
-        <div className="relative mx-auto mt-24 max-w-4xl">
+        <div className="relative mx-auto mt-20 max-w-4xl">
+          <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+            A glimpse at the systems we design and build
+          </p>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-10 -top-14 hidden h-32 w-32 rotate-6 rounded-[28px] border border-brand/15 sm:block"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-10 -left-8 hidden h-20 w-20 -rotate-12 rounded-full border border-accent/20 sm:block"
+          />
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

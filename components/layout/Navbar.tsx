@@ -5,7 +5,8 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { navLinks, siteConfig } from "@/constants/site";
+import { navLinks } from "@/data/navigation";
+import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/cn";
 
 export function Navbar() {
@@ -42,9 +43,6 @@ export function Navbar() {
             className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-slate-900"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-gradient-to-br from-brand to-accent text-sm font-bold text-white">
-              N
-            </span>
             <span className="font-display">
               {siteConfig.shortName}{" "}
               <span className="text-brand">Digital</span>
@@ -65,7 +63,7 @@ export function Navbar() {
           </ul>
 
           <div className="hidden md:block">
-            <Button href="#contact">Book a Call</Button>
+            <Button href="/contact">Book a Call</Button>
           </div>
 
           <button
@@ -100,7 +98,7 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Button href="#contact" size="lg" className="mt-3 w-full">
+              <Button href="/contact" size="lg" className="mt-3 w-full">
                 Book a Call
               </Button>
             </Container>

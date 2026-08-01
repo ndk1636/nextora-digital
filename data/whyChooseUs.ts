@@ -31,6 +31,12 @@ export const whyChooseUs: WhyChooseUsItem[] = [
     description:
       "Most engagements start with one project and grow into an ongoing technology partnership.",
   },
+  {
+    icon: "transparency",
+    title: "Transparent Pricing",
+    description:
+      "Every engagement is scoped and quoted in writing before work begins — no open-ended hourly billing, no surprise invoices.",
+  },
 ];
 
 export const partnershipHighlight = {

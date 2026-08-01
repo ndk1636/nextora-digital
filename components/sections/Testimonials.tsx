@@ -6,6 +6,24 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { QuoteIcon } from "@/components/icons";
 
+const commitments = [
+  {
+    label: "Direct Communication",
+    quote:
+      "You'll talk directly with the engineers building your software — not an account-manager relay.",
+  },
+  {
+    label: "Full Ownership",
+    quote:
+      "Every engagement includes full source code and infrastructure ownership, transferred to you.",
+  },
+  {
+    label: "Ongoing Support",
+    quote:
+      "Support doesn't end at launch — every project includes a post-launch monitoring window.",
+  },
+];
+
 export function Testimonials() {
   return (
     <section
@@ -50,6 +68,31 @@ export function Testimonials() {
             <Button href="#contact">Book a Call</Button>
           </div>
         </motion.div>
+
+        <p className="mx-auto mt-16 max-w-md text-center text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+          What you can expect from working with us
+        </p>
+
+        <div className="mx-auto mt-6 grid max-w-4xl gap-5 sm:grid-cols-3">
+          {commitments.map((item, index) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="rounded-card border border-white/60 bg-white/70 p-6 shadow-soft backdrop-blur-md"
+            >
+              <QuoteIcon className="h-5 w-5 text-brand/30" />
+              <p className="mt-4 text-sm leading-relaxed text-slate-700">
+                {item.quote}
+              </p>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </Container>
     </section>
   );

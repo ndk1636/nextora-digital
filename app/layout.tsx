@@ -3,7 +3,8 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { MotionProvider } from "@/components/animations/MotionProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { siteConfig } from "@/constants/site";
+import { siteConfig } from "@/data/site";
+import { getOrganizationSchema } from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -75,6 +76,12 @@ export default function RootLayout({
       className={`${inter.variable} ${jakarta.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-slate-900">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationSchema()),
+          }}
+        />
         <MotionProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

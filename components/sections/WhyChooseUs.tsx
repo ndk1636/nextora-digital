@@ -6,12 +6,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
 import {
   BadgeCheckIcon,
+  ClipboardListIcon,
   LayersIcon,
   ShieldIcon,
   TargetIcon,
   UsersIcon,
 } from "@/components/icons";
-import { partnershipHighlight, whyChooseUs } from "@/constants/whyChooseUs";
+import { partnershipHighlight, whyChooseUs } from "@/data/whyChooseUs";
 import type { WhyChooseUsIconKey } from "@/types";
 
 const icons: Record<WhyChooseUsIconKey, typeof ShieldIcon> = {
@@ -20,6 +21,7 @@ const icons: Record<WhyChooseUsIconKey, typeof ShieldIcon> = {
   reliability: ShieldIcon,
   impact: TargetIcon,
   partnership: UsersIcon,
+  transparency: ClipboardListIcon,
 };
 
 export function WhyChooseUs() {
@@ -60,7 +62,7 @@ export function WhyChooseUs() {
             </div>
           </motion.div>
 
-          <div className="flex flex-col gap-8">
+          <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2">
             {whyChooseUs.map((item, index) => {
               const Icon = icons[item.icon];
               return (

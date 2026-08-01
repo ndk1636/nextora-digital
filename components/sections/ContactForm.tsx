@@ -3,7 +3,7 @@
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, LoaderIcon } from "@/components/icons";
-import { budgetRanges, projectTypes } from "@/constants/contact";
+import { budgetRanges, projectTypes } from "@/data/contact";
 import { cn } from "@/lib/cn";
 import type { ContactFormValues } from "@/types";
 

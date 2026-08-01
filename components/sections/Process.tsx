@@ -12,7 +12,7 @@ import {
   SearchIcon,
   CheckCircleIcon,
 } from "@/components/icons";
-import { processSteps } from "@/constants/process";
+import { processSteps } from "@/data/process";
 import type { ProcessIconKey } from "@/types";
 
 const icons: Record<ProcessIconKey, typeof SearchIcon> = {
@@ -64,6 +64,9 @@ export function Process() {
                     <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
                       {item.description}
                     </p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 rounded-pill bg-blue-50 px-3 py-1 text-[11px] font-semibold text-brand">
+                      Output — {item.output}
+                    </span>
                   </div>
                 </motion.div>
               );

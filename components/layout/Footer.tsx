@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { GithubIcon, LinkedInIcon, XIcon } from "@/components/icons";
-import { navLinks, siteConfig } from "@/constants/site";
+import { legalLinks, navLinks } from "@/data/navigation";
+import { services } from "@/data/services";
+import { siteConfig } from "@/data/site";
+import { trustedByStack } from "@/data/technologies";
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.links.linkedin, icon: LinkedInIcon },
@@ -9,14 +12,16 @@ const socialLinks = [
   { label: "X (Twitter)", href: siteConfig.links.twitter, icon: XIcon },
 ];
 
+const footerServices = services.slice(0, 5);
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-white py-14">
+    <footer className="border-t border-slate-200 bg-white py-16">
       <Container>
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-          <div className="max-w-xs">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-4">
+          <div className="col-span-2 max-w-xs sm:col-span-1">
             <Link
               href="/"
               className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-slate-900"
@@ -30,33 +35,10 @@ export function Footer() {
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-500">
               A premium software engineering studio building SaaS platforms,
-              enterprise systems, and AI-powered applications.
+              enterprise systems, and AI-powered applications for startups and
+              enterprises worldwide.
             </p>
-          </div>
-
-          <nav
-            aria-label="Footer"
-            className="grid grid-cols-2 gap-x-10 gap-y-3 sm:flex sm:gap-8"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-slate-600 transition-colors hover:text-slate-900"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex flex-col gap-4">
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand"
-            >
-              {siteConfig.email}
-            </a>
-            <div className="flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -71,10 +53,96 @@ export function Footer() {
               ))}
             </div>
           </div>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+              Company
+            </h3>
+            <nav aria-label="Footer" className="mt-4 flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-slate-600 transition-colors hover:text-slate-900"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+              Services
+            </h3>
+            <nav className="mt-4 flex flex-col gap-3">
+              {footerServices.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="text-sm text-slate-600 transition-colors hover:text-slate-900"
+                >
+                  {service.title}
+                </Link>
+              ))}
+              <Link
+                href="/services"
+                className="text-sm font-medium text-brand transition-colors hover:text-brand-dark"
+              >
+                View all services →
+              </Link>
+            </nav>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+              Contact
+            </h3>
+            <div className="mt-4 flex flex-col gap-3">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-sm font-medium text-slate-700 transition-colors hover:text-brand"
+              >
+                {siteConfig.email}
+              </a>
+              <Link
+                href="/contact"
+                className="text-sm text-slate-600 transition-colors hover:text-slate-900"
+              >
+                Book a call
+              </Link>
+              <Link
+                href="/faq"
+                className="text-sm text-slate-600 transition-colors hover:text-slate-900"
+              >
+                Frequently asked questions
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-200 pt-8 text-center text-xs text-slate-500 sm:text-left">
-          &copy; {year} {siteConfig.name}. All rights reserved.
+        <div className="mt-12 border-t border-slate-200 pt-8">
+          <p className="text-xs leading-relaxed text-slate-400">
+            <span className="font-semibold text-slate-500">Built with:</span>{" "}
+            {trustedByStack.join(" · ")}
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-4 border-t border-slate-200 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
+          <p className="text-xs text-slate-500">
+            &copy; {year} {siteConfig.name}. All rights reserved.
+          </p>
+          <nav aria-label="Legal" className="flex items-center gap-5">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs text-slate-500 transition-colors hover:text-slate-900"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </Container>
     </footer>
